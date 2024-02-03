@@ -12,7 +12,7 @@ def main():
 
     sock.shutdown(SHUT_WR)
 
-    with open("returned.mp3", "wb") as f:
+    with open("spectrogram.png", "wb") as f:
         while True:
             l = sock.recv(500)
             if not l:
