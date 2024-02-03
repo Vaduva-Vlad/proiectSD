@@ -17,7 +17,7 @@ class AudioProcessor:
         spectrogram_dB = librosa.power_to_db(spectrogram, ref=np.max)
         img = librosa.display.specshow(spectrogram_dB, x_axis='time', y_axis='mel', sr=sr, fmax=8000, ax=ax)
         fig.colorbar(img, ax=ax, format='%+2.0f dB')
-        ax.set(title='Spectrograma')
+        ax.set(title='Spectrogram')
         buffer=BytesIO()
         plt.savefig(buffer,format='png')
         return buffer.getvalue()

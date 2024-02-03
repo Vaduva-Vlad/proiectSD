@@ -7,7 +7,8 @@ def main():
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((host, port))
-    with open("test.mp3", "rb") as f:
+    filename = input("Enter name of audio file: ")
+    with open(filename, "rb") as f:
         sock.sendfile(f)
 
     sock.shutdown(SHUT_WR)

@@ -1,9 +1,10 @@
+import io
 import socket
 from process_audio import AudioProcessor
 
 def get_spectrogram(audio_file):
     audio_processor = AudioProcessor(audio_file)
-    audio_processor.generate_spectrogram_image("spectrogram.png")
+    return audio_processor.generate_spectrogram_image("spectrogram.png")
 
 def main():
     host = '127.0.0.1'
@@ -24,11 +25,10 @@ def main():
             f.write(l)
     print("File received")
 
-    get_spectrogram('output.mp3')
+    print("Sending spectrogram to client")
+    image = get_spectrogram('output.mp3')
+    connection.sendall(image)
 
-    with open('spectrogram.png', 'rb') as f:
-        print("Sending file back")
-        connection.sendfile(f)
 
     connection.close()
     s.close()
